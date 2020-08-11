@@ -3,7 +3,7 @@
     #listen to. we can't just use 0.0.0.0, it will fail.
     bind ${bind_address}
     auto {
-        directory /opt/coredns/zonefiles .*[.](.*) {1}
+        directory /opt/coredns/zonefiles (.*) {1}
         reload 5s
     }
     reload 5s
