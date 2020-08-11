@@ -6,8 +6,6 @@ The server is configured to to work with zonefiles which are fetched from an Ope
 
 The server will automatically detect any changes in the containers' objects (additions, deletions and updates) and update its zonefiles accordingly.
 
-Because the ip of dns servers need to be stable (for internal dns servers, their ips cannot be encapsulated under names as they are the providers of those names), the module expects network ports to be passed as an argument. This helps fixate the ips of dns server even in the event that they need to be reprovisioned.
-
 # Note About Built-in Alternative
 
 Openstack does optionally support DNS as a service. 
@@ -15,6 +13,24 @@ Openstack does optionally support DNS as a service.
 If it is installed in your Openstack, made accessible to you and it suits your needs, you may find it simpler to rely on that. 
 
 But if you don't have access to it, than this module is an alternative.
+
+# Limitations
+
+## Expected Network Ports Argument
+
+Because the ip of dns servers need to be stable (for internal dns servers, their ips cannot be encapsulated under names as they are the resolvers of those names), the module expects network ports to be defined outside of the module and passed as an argument. 
+
+This helps fixate the ips of dns server even in the event that they need to be reprovisioned.
+
+## Expected Zonefile Naming Convention
+
+The server expects a strict naming convention for the objects containing a zonefile: The name of the object a suffix of the domain the zonefile is for.
+
+See the following project for an implementation that fulfills this requirement: https://github.com/Ferlab-Ste-Justine/openstack-zonefile
+
+## Object Protocol Support
+
+Currently, the zonefile scrapping only works with containers that are accessible using the Swift protocol (which usually shouldn't be a problem for most Openstack installations).
 
 # Usage
 
