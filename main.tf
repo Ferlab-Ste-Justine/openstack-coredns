@@ -28,7 +28,7 @@ data "template_cloudinit_config" "coredns_config" {
 
 resource "openstack_compute_instance_v2" "coredns" {
   count     = length(var.network_ports)
-  name      = var.namespace != "" ? "coredns-${var.namespace}-${count.index + 1}" : "coredns-${count.index + 1}"
+  name      = var.namespace != "" ? "coredns-${count.index + 1}-${var.namespace}" : "coredns-${count.index + 1}"
   image_id  = var.image_id
   flavor_id = var.flavor_id
   key_pair  = var.keypair_name
