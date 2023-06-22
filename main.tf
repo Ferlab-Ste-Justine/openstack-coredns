@@ -37,4 +37,10 @@ resource "openstack_compute_instance_v2" "coredns" {
   network {
     port = var.network_ports[count.index].id
   }
+
+  lifecycle {
+    ignore_changes = [
+      user_data,
+    ]
+  }
 }
