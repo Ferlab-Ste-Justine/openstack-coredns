@@ -1,3 +1,15 @@
+# Deprecation notice
+
+This module is getting deprecated in favor of the following modules:
+- https://github.com/Ferlab-Ste-Justine/terraform-openstack-coredns-security-groups
+- https://github.com/Ferlab-Ste-Justine/terraform-openstack-coredns-server
+
+While less concice, the above modules provide needed flexibility when operating a coredns cluster by allowing us to reprovision individual nodes and by decoupling the networking from the vms.
+
+Also, the new module stores zonefiles in etcd instead of Ceph which is more consistent with how our coredns servers are managed across projects.
+
+This module will be updated as needed while legacy clusters are still using it, but it will eventually be archived.
+
 # About
 
 This module provision coredns instances on Openstack.
